@@ -88,6 +88,24 @@ or without specifying a slot:
 ./bin/beacon-verifier
 ```
 
+To run the application with custom configuration parameters, use a command similar to the one below:
+
+```bash
+./bin/beacon-verifier \
+  -beacon https://custom-beacon-api.endpoint \
+  -verifier 0x4D581D208fe2645A97Bee8344c5073c6729a715b \
+  -eth https://custom-eth-node.endpoint \
+  -retries 3 \
+  -slot 1234567
+```
+
+This command configures the tool to:
+- Fetch beacon block headers from [https://custom-beacon-api.endpoint](https://custom-beacon-api.endpoint)
+- Use the verifier contract at `0x4D581D208fe2645A97Bee8344c5073c6729a715b`
+- Connect to an Ethereum node at [https://custom-eth-node.endpoint](https://custom-eth-node.endpoint) to interact with the verifier contract
+- Retry header fetching up to 3 times to find the next filled slot
+- Verify the header for slot `1234567`
+
 The application logs detailed information about the header data, generated Merkle proofs, and verification results.
 
 ## Testing and Code Quality
