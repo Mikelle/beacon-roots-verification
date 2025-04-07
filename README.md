@@ -128,6 +128,14 @@ The Solidity smart contract `BeaconHeaderVerifier` is used to verify beacon bloc
 - **Retrieving the Beacon Block Root**: Uses the Beacon Roots contract (as per EIP-4788) to fetch the root.
 - **Field Verification**: Verifies individual header fields (e.g., `slot`, `proposer index`, `parent root`, `state root`, `body root`) using SSZ Merkle proofs.
 
+### Deployed contract
+
+### Deployed contract
+
+The `BeaconHeaderVerifier` contract is deployed on the Holesky Ethereum testnet. You can view the contract on Etherscan using the following link:
+
+[BeaconHeaderVerifier on Holesky Etherscan](https://holesky.etherscan.io/address/0x4D581D208fe2645A97Bee8344c5073c6729a715b#code)
+
 ### Run tests
 
 ```bash
