@@ -208,11 +208,6 @@ func TestGenerateHeaderProofValues(t *testing.T) {
 	})
 }
 
-// Mock the Client.CallContract method for testing
-type mockClient struct {
-	CallContractFn func(result []byte, err error)
-}
-
 // TestVerifyOnChain tests the contract verification with mocks
 func TestVerifyOnChain(t *testing.T) {
 	headerData := setupTestHeader()
@@ -300,11 +295,7 @@ func TestVerifyOnChainErrors(t *testing.T) {
 	t.Run("Invalid field value hex", func(t *testing.T) {
 		// This test will fail at ethclient.Dial, but we can at least test the hex decoding part
 		proofData := Data{
-			BeaconTimestamp: 1634567890,
-			BeaconBlockRoot: "0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef",
-			FieldIndex:      0,
 			FieldValue:      "0xNOT-HEX",
-			MerkleProof:     []string{"0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef"},
 		}
 
 		_, err := hex.DecodeString(trimHexPrefix(proofData.FieldValue))
@@ -316,10 +307,6 @@ func TestVerifyOnChainErrors(t *testing.T) {
 	// Test with invalid merkle proof hex
 	t.Run("Invalid merkle proof hex", func(t *testing.T) {
 		proofData := Data{
-			BeaconTimestamp: 1634567890,
-			BeaconBlockRoot: "0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef",
-			FieldIndex:      0,
-			FieldValue:      "0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef",
 			MerkleProof:     []string{"0xNOT-HEX"},
 		}
 

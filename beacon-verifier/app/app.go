@@ -56,7 +56,7 @@ func NewApplication(cfg *config.Config) (*Application, error) {
 // Run executes the main application logic
 func (a *Application) Run() error {
 	var (
-		err                          error
+		err                                  error
 		nextFilledSlotHeader, headerToVerify beacon.HeaderData
 	)
 	if a.Config.Slot != "" {
