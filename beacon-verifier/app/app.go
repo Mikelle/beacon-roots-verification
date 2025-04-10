@@ -182,7 +182,7 @@ func (a *Application) displayHeaderInfo(headerData beacon.HeaderData, nextHeader
 }
 
 // verifyFields generates and verifies proofs for each field
-func (a *Application) verifyFields(headerData beacon.HeaderData, latestHeader beacon.HeaderData) (map[string]bool, error) {
+func (a *Application) verifyFields(headerData beacon.HeaderData, nextFilledSlotHeader beacon.HeaderData) (map[string]bool, error) {
 	proofResults := make(map[string]bool)
 
 	if !a.Web3Connected {
@@ -191,7 +191,7 @@ func (a *Application) verifyFields(headerData beacon.HeaderData, latestHeader be
 	}
 
 	fields := a.Config.Verification.FieldsToVerify
-	nextSlotTimestamp := latestHeader.Timestamp
+	nextSlotTimestamp := nextFilledSlotHeader.Timestamp
 
 	for _, fieldName := range fields {
 		log.Printf("\n=== Generating proof for %s ===", fieldName)
